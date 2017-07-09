@@ -1,7 +1,11 @@
 exports.getFirstNumber = (str) => {
-  const numAsStr = str.replace(/(^.+\D)(\d+)(\D.+$)/i, '$2');
+  const numAsStr = str.match(/\d+/)[0];
   if (!numAsStr) {
     return null;
   }
-  return +numAsStr;
+  const numAsNum = +numAsStr;
+  if (isNaN(numAsNum)) {
+    return null;
+  }
+  return numAsNum;
 };

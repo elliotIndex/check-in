@@ -42,14 +42,26 @@ exports.postHappiness = (req, res, next) => {
  * POST /happinessTest
  * Create a new happiness entry from TWILIO!!
  */
-exports.postHappinessTest = (req, res) => {
+exports.postHappinessTest = (req, res, next) => {
   const messageInfo = req.body;
   const sender = messageInfo.From;
   const value = StringUtils.getFirstNumber(messageInfo.Body);
+  const comment = messageInfo.Body;
 
-  console.log('sender', sender);
-  console.log('value', value);
-
-  res.set('Content-Type', 'text/xml');
-  res.send('Thanks!');
+  User.findOne({
+    'profile.phone': sender
+  }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    user.happiness = user.happiness || [];
+    user.happiness.push({ timestamp: Date.now(), value, comment });
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.set('Content-Type', 'text/xml');
+      res.send('Thanks!');
+    });
+  });
 };
