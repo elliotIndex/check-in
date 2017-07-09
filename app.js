@@ -140,6 +140,7 @@ app.get('/logout', userController.logout);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/happiness', passportConfig.isAuthenticated, happinessController.index);
+app.get('/happinessData', passportConfig.isAuthenticated, happinessController.happinessData);
 app.post('/happiness', passportConfig.isAuthenticated, happinessController.postHappiness);
 app.post('/happinessTest', twilio.webhook(), happinessController.postHappinessTest);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);

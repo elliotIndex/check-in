@@ -12,6 +12,17 @@ exports.index = (req, res) => {
 };
 
 /**
+ * GET /happinessData
+ * Happiness data.
+ */
+exports.happinessData = (req, res) => {
+  User.findById(req.user.id, (err, user) => {
+    res.set('Content-Type', 'application/json');
+    res.send(user.happiness);
+  });
+};
+
+/**
  * POST /happiness
  * Create a new happiness entry
  */

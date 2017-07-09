@@ -72,9 +72,14 @@
       "chai-friendly/no-unused-expressions": 2
     },
     "env": {
+      "browser": true,
       "jasmine": true,
       "mocha": true,
       "node": true
+    },
+    "globals": {
+      "Chart": true,
+      "$": true
     },
     "plugins": [
       "chai-friendly"
