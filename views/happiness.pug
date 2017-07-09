@@ -10,9 +10,10 @@ block content
       th Timestamp
       th Value
       th Comment
-    each happinessDatum in user.happiness
+    each happinessDatum in user.happiness.reverse()
       tr
-        td #{(new Date(happinessDatum.timestamp)).toLocaleTimeString('en-us')}
+        td #{(new Date(happinessDatum.timestamp)).toLocaleDateString('en-us')}
+         |  #{(new Date(happinessDatum.timestamp)).toLocaleTimeString('en-us')}
         td #{happinessDatum.value}
         td #{happinessDatum.comment}
   form(method='POST')
