@@ -178,6 +178,16 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 /**
+ * Login redirect middleware.
+ */
+exports.loggedInHomePageRedirect = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/happiness');
+};
+
+/**
  * Authorization Required middleware.
  */
 exports.isAuthorized = (req, res, next) => {
