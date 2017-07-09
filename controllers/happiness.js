@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const StringUtils = require('../utils/string-utils');
 
 /**
  * GET /happiness
@@ -42,6 +43,13 @@ exports.postHappiness = (req, res, next) => {
  * Create a new happiness entry from TWILIO!!
  */
 exports.postHappinessTest = (req, res) => {
+  const messageInfo = req.body;
+  const sender = messageInfo.From;
+  const value = StringUtils.getFirstNumber(messageInfo.Body);
+
+  console.log('sender', sender);
+  console.log('value', value);
+
   res.set('Content-Type', 'text/xml');
   res.send('Thanks!');
 };
