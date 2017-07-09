@@ -31,6 +31,7 @@ dotenv.load({
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
+const happinessController = require('./controllers/happiness');
 const apiController = require('./controllers/api');
 
 /**
@@ -125,6 +126,8 @@ app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
+app.get('/happiness', passportConfig.isAuthenticated, happinessController.index);
+app.post('/happiness', passportConfig.isAuthenticated, happinessController.postHappiness);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);

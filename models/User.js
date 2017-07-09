@@ -17,7 +17,15 @@ const userSchema = new mongoose.Schema({
   profile: {
     name: String,
     picture: String
-  }
+  },
+
+  happiness: [
+    {
+      timestamp: Number,
+      value: Number,
+      comment: String
+    }
+  ]
 }, {
   timestamps: true
 });

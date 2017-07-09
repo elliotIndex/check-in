@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 Keep track of what matters
+  p.lead Measure your happiness over time
+  hr
+  h2 Happiness
+  p #{user.happiness.length ? user.happiness : 'No entries yet'}
+  form(method='POST')
+    legend Add entry
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.control-label(for='value') Value
+      input.form-control(type='value', name='value', id='value', placeholder='1-10', required)
+    .form-group
+      label.control-label(for='comment') Comment
+      textarea.form-control(type='comment', name='comment', id='comment', placeholder='Write any comment here ...')
+    .form-group
+      button.btn.btn-primary(type='submit') Submit
+  hr
+  h2 Settings
+  p Text message settings will go here
