@@ -1,3 +1,13 @@
+/*
+  Start sequence:
+  mongod in a new terminal window
+  npm run dev
+  ngrok http 3000
+    get the http proxy url and add that to your twilio number webhook as
+    http://<hash>.ngrok.io/happinessTest
+  mongo, for debugging
+*/
+
 /**
  * Module dependencies.
  */
