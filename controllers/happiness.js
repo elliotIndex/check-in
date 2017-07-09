@@ -36,3 +36,12 @@ exports.postHappiness = (req, res, next) => {
     });
   });
 };
+
+/**
+ * POST /happinessTest
+ * Create a new happiness entry from TWILIO!!
+ */
+exports.postHappinessTest = (req, res) => {
+  res.set('Content-Type', 'text/xml');
+  res.send('Thanks!');
+};

@@ -18,6 +18,7 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
+const twilio = require('twilio');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -87,7 +88,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if (req.path === '/api/upload' || req.path.includes('twilio')) {
+    next();
+  } else if (req.method === 'POST' && req.path.includes('happinessTest')) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -128,6 +131,7 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/happiness', passportConfig.isAuthenticated, happinessController.index);
 app.post('/happiness', passportConfig.isAuthenticated, happinessController.postHappiness);
+app.post('/happinessTest', twilio.webhook(), happinessController.postHappinessTest);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
