@@ -43,7 +43,6 @@ dotenv.load({
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const happinessController = require('./controllers/happiness');
-const apiController = require('./controllers/api');
 const reminders = require('./controllers/reminders');
 
 /**
@@ -150,13 +149,6 @@ app.post('/account/reminders', passportConfig.isAuthenticated, userController.po
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
-
-/**
- * API examples routes.
- */
-app.get('/api', apiController.getApi);
-app.get('/api/twilio', apiController.getTwilio);
-app.post('/api/twilio', apiController.postTwilio);
 
 /**
  * OAuth authentication routes. (Sign in)

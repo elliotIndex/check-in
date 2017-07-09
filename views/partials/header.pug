@@ -11,14 +11,14 @@
         | Check In
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        li(class=(title == 'Home') ? 'active' : undefined)
-          a(href='/') Home
-        li(class=(title == 'API Examples') ? 'active' : undefined)
-          a(href='/api') API Examples
-        li(class=(title == 'Happiness') ? 'active' : undefined)
-          a(href='/happiness') Happiness
-        li
-          a(href='/status') Status
+        if user
+          li(class=(title == 'Happiness') ? 'active' : undefined)
+            a(href='/happiness') Happiness
+          li(class=(title == 'Account Management') ? 'active' : undefined)
+            a(href='/account') Settings
+          if user.email === 'elliotaplant@ucla.edu'
+            li
+              a(href='/status') Server Status
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
