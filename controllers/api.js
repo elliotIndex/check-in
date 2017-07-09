@@ -39,16 +39,15 @@ exports.postTwilio = (req, res, next) => {
 
   const message = {
     to: req.body.number,
-    from: '+14155793449',
-    body: req.body.message
+    from: process.env.TWILIO_NUMBER,
+    body: req.body.message,
   };
-  twilio.sendMessage(message, (err, responseData) => {
-    if (err) {
-      return next(err.message);
-    }
-    req.flash('success', {
-      msg: `Text sent to ${responseData.to}.`
-    });
-    res.redirect('/api/twilio');
-  });
+
+  twilio.messages
+    .create(message)
+    .then((message) => {
+      req.flash('success', { msg: `Text sent to ${message.to}.` });
+      res.redirect('/api/twilio');
+    })
+    .catch(err => next(err.message));
 };
