@@ -16,6 +16,7 @@ block content
          |  #{(new Date(happinessDatum.timestamp)).toLocaleTimeString('en-us')}
         td #{happinessDatum.value}
         td #{happinessDatum.comment}
+  include partials/happinessChart
   form(method='POST')
     legend Add entry
     input(type='hidden', name='_csrf', value=_csrf)
