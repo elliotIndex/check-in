@@ -1,11 +1,7 @@
 @import "themes/default/variables";
-
 @import "lib/bootstrap/bootstrap";
 @import "lib/font-awesome/font-awesome";
-
-@import "themes/default/default";
-
-// Scaffolding
+@import "themes/default/default"; // Scaffolding
 // -------------------------
 
 html {
@@ -25,34 +21,35 @@ footer {
   height: 45px;
   line-height: 45px;
 
-  p, ul {
+  p,
+  ul {
     margin-bottom: 0;
   }
 }
 
+a:hover {
+  text-decoration: none;
+}
 // Input Fields
 // -------------------------
 
 textarea {
   resize: vertical;
 }
-
 // Navbar
 // -------------------------
 
 .navbar-nav img {
   width: 30px;
   height: 30px;
-  margin: -15px 15px -15px;
+  margin: -15px 15px;
 }
-
 // Alerts
 // -------------------------
 
 .alert {
   margin-top: 20px;
 }
-
 // Thumbnails
 // -------------------------
 
@@ -61,10 +58,15 @@ textarea {
   border-radius: 0;
   box-shadow: 0 0 5px #ccc, inset 0 0 0 #000;
 }
-
 // Font Icons
 // -------------------------
 
 .fa {
   margin-right: 6px;
+}
+// API examples
+.twilio-text {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #333;
 }
