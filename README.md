@@ -1,5 +1,5 @@
 ![](https://lh4.googleusercontent.com/-PVw-ZUM9vV8/UuWeH51os0I/AAAAAAAAD6M/0Ikg7viJftQ/w1286-h566-no/hackathon-starter-logo.jpg)
-Hackathon Starter 
+Hackathon Starter
 =======================
 
 [![Dependency Status](https://david-dm.org/sahat/hackathon-starter/status.svg?style=flat)](https://david-dm.org/sahat/hackathon-starter) [![Build Status](https://travis-ci.org/sahat/hackathon-starter.svg?branch=master)](https://travis-ci.org/sahat/hackathon-starter) [![Join the chat at https://gitter.im/sahat/hackathon-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sahat/hackathon-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Thinkful Pair on Node](https://tf-assets-staging.s3.amazonaws.com/badges/thinkful_repo_badge.svg)](http://start.thinkful.com/node/)
@@ -146,7 +146,7 @@ restart the server each time you make a small change in code. To install, run
 
 Yarn vs NPM
 -----------
-Yarn is a new JavaScript package manager built by Facebook, Google, Exponent and Tilde. Yarn is not an attempt to replace `npm`, 
+Yarn is a new JavaScript package manager built by Facebook, Google, Exponent and Tilde. Yarn is not an attempt to replace `npm`,
 it's simply an alternative CLI client for fetching modules from the npm registry but it does have some unique benefits over using `npm`,
 most noticeably speed and consistency (via a lock file which ensures that only specific versions of dependencies are installed).
 Hackathon Starter includes a `yarn.lock` file by default and as project dependencies are updated, this file will be updated to reflect those changes.
@@ -354,7 +354,7 @@ Project Structure
 | **views/partials**/footer.pug      | Footer partial template.                                     |
 | **views**/layout.pug               | Base template.                                               |
 | **views**/home.pug                 | Home page template.                                          |
-| .env.example                       | Your API keys, tokens, passwords and database URI.           |
+| .env                       | Your API keys, tokens, passwords and database URI.           |
 | app.js                             | The main application file.                                   |
 | package.json                       | NPM dependencies.                                            |
 | yarn.lock                          | Contains exact versions of NPM dependencies in package.json. |
@@ -1120,7 +1120,7 @@ var YYYY = now.getFullYear();
 
 if (DD < 10) {
   DD = '0' + DD;
-} 
+}
 
 if (MM < 10) {
   MM = '0' + MM;
@@ -1202,13 +1202,13 @@ User.aggregate({ $group: { _id: null, total: { $sum: '$votes' } } }, (err, votes
 Docker
 ----------
 
-You will need docker and docker-compose installed to build the application. 
+You will need docker and docker-compose installed to build the application.
 
 - [Docker installation](https://docs.docker.com/engine/installation/)
 
 - [Common problems setting up docker](https://docs.docker.com/toolbox/faqs/troubleshoot/)
 
-After installing docker, start the application with the following commands : 
+After installing docker, start the application with the following commands :
 
 ```
 # To build the project for the first time or when you add dependencies
@@ -1441,7 +1441,7 @@ Be sure to check out the full list of Watson services to forwarder enhance your 
     manual_scaling:
       instances: 1
     ```
-- Make sure you've set `MONGODB_URI` or `MONGOLAB_URI` in `.env.example`
+- Make sure you've set `MONGODB_URI` or `MONGOLAB_URI` in `.env`
 - Run the following command to deploy the `hackathon-starter` app:
 
     ```bash
@@ -1498,7 +1498,7 @@ Changelog
 - Flash an error message when updating email to that which is already taken
 - Removing an email address during profile update is no longer possible
 - PayPal API example now uses *return_url* and *cancel_url* from `.env`
-- Added client-side `required=true` attributes to input fields 
+- Added client-side `required=true` attributes to input fields
 - Fixed broken `show()` function in the GitHub API example
 - Fixed YQL query in the Yahoo Weather API example
 - Fixed *Can't set headers after they are sent* error in Stripe API example
@@ -1527,7 +1527,7 @@ Changelog
 
 ### 3.4.0 (January 5, 2016)
 - Use `dontenv` package for managing API keys and secrets.
-- Removed *secrets.js* (replaced by *.env.example*).
+- Removed *secrets.js* (replaced by *.env*).
 - Added .env to .gitignore.
 - Fixed broken Aviary API image.
 
