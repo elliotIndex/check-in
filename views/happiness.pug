@@ -5,17 +5,6 @@ block content
   p.lead Measure your happiness over time
   hr
   h2 Happiness
-  table
-    tr
-      th Timestamp
-      th Value
-      th Comment
-    each happinessDatum in user.happiness.reverse()
-      tr
-        td #{(new Date(happinessDatum.timestamp)).toLocaleDateString('en-us')}
-         |  #{(new Date(happinessDatum.timestamp)).toLocaleTimeString('en-us')}
-        td #{happinessDatum.value}
-        td #{happinessDatum.comment}
   include partials/happinessChart
   form(method='POST')
     legend Add entry

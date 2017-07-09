@@ -1,6 +1,7 @@
 const ctx = document.getElementById('myChart')
   .getContext('2d');
 
+// Place request on event loop so we have access to jQuery
 setTimeout(() => {
   $.get('http://localhost:3000/happinessData', (happinessData) => {
     const chartedHappinessData = happinessData
@@ -10,9 +11,7 @@ setTimeout(() => {
       y: happinessDatum.value,
     }));
 
-    console.log('chartedHappinessData', chartedHappinessData);
-
-    const myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'line',
       data: {
         datasets: [{
@@ -29,7 +28,8 @@ setTimeout(() => {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              max: 10
             }
           }],
           xAxes: [{
@@ -38,8 +38,6 @@ setTimeout(() => {
         }
       }
     });
-
-    console.log('Chart created:', myChart);
   })
   .fail((error) => {
     console.error('Unable to get happiness data', error);
