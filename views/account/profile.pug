@@ -25,6 +25,25 @@ block content
           | Update Profile
 
   .page-header
+    h3 Daily Reminders
+    
+  form.form-horizontal(action='/account/reminders', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='should') Would you like reminders?
+      .col-sm-7.control-label
+        input.checkbox(type='checkbox', name='should', id='should', checked=user.reminders.should)
+    .form-group
+      label.col-sm-3.control-label(for='time') Daily at
+      .col-sm-7
+        input.form-control(type='time', name='time', id='time', value=user.reminders.time)
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Update Reminders
+
+  .page-header
     h3 Change Password
 
   form.form-horizontal(action='/account/password', method='POST')
@@ -60,11 +79,6 @@ block content
   .form-horizontal
     .form-group
       .col-sm-offset-3.col-sm-4
-        if user.instagram
-          p: a.text-danger(href='/account/unlink/instagram') Unlink your Instagram account
-        else
-          p: a(href='/auth/instagram') Link your Instagram account
-      .col-sm-offset-3.col-sm-4
         if user.google
           p: a.text-danger(href='/account/unlink/google') Unlink your Google account
         else
@@ -74,18 +88,3 @@ block content
           p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
         else
           p: a(href='/auth/facebook') Link your Facebook account
-      .col-sm-offset-3.col-sm-4
-        if user.twitter
-          p: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
-        else
-          p: a(href='/auth/twitter') Link your Twitter account
-      .col-sm-offset-3.col-sm-4
-        if user.github
-          p: a.text-danger(href='/account/unlink/github') Unlink your GitHub account
-        else
-          p: a(href='/auth/github') Link your GitHub account
-      .col-sm-offset-3.col-sm-4
-        if user.linkedin
-          p: a.text-danger(href='/account/unlink/linkedin') Unlink your LinkedIn account
-        else
-          p: a(href='/auth/linkedin') Link your LinkedIn account

@@ -1,4 +1,4 @@
-const ctx = document.getElementById('myChart')
+const chartContext = document.getElementById('myChart')
   .getContext('2d');
 
 // Place request on event loop so we have access to jQuery
@@ -17,7 +17,7 @@ setTimeout(() => {
         tooltip: 'hi'
       }));
 
-    new Chart(ctx, {
+    new Chart(chartContext, {
       type: 'line',
       data: {
         datasets: [{

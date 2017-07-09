@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
     picture: String
   },
 
+  reminders: {
+    should: Boolean,
+    time: String
+  },
+
   happiness: [
     {
       timestamp: Number,

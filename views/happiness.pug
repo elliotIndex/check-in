@@ -5,9 +5,9 @@ block content
   p.lead Measure your happiness over time
   hr
   h2 Happiness
-  include partials/happinessChart
+  include partials/happiness-chart
+  h3 Add entry
   form(method='POST')
-    legend Add entry
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
       label.control-label(for='value') Value

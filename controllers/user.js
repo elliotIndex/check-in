@@ -136,6 +136,25 @@ exports.postUpdateProfile = (req, res, next) => {
 };
 
 /**
+ * POST /account/reminders
+ * Update reminders information.
+ */
+exports.postUpdateReminders = (req, res, next) => {
+  User.findById(req.user.id, (err, user) => {
+    if (err) { return next(err); }
+    user.reminders.should = req.body.should === 'on';
+    user.reminders.time = req.body.time || '';
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', { msg: 'Reminders information has been updated.' });
+      res.redirect('/account');
+    });
+  });
+};
+
+/**
  * POST /account/password
  * Update current password.
  */
