@@ -5,7 +5,16 @@ block content
   p.lead Measure your happiness over time
   hr
   h2 Happiness
-  p #{user.happiness.length ? user.happiness : 'No entries yet'}
+  table
+    tr
+      th Timestamp
+      th Value
+      th Comment
+    each happinessDatum in user.happiness
+      tr
+        td #{(new Date(happinessDatum.timestamp)).toLocaleTimeString('en-us')}
+        td #{happinessDatum.value}
+        td #{happinessDatum.comment}
   form(method='POST')
     legend Add entry
     input(type='hidden', name='_csrf', value=_csrf)
