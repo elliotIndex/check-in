@@ -25,12 +25,10 @@ exports.postHappiness = (req, res, next) => {
       value: req.body.value || null,
       comment: req.body.comment || ''
     });
-    console.log('before save', user);
     user.save((err) => {
       if (err) {
         return next(err);
       }
-      console.log('aftr save');
       req.flash('success', {
         msg: 'Happiness entry has been entered successfully.'
       });
