@@ -75,11 +75,11 @@
     "env": {
       "browser": true,
       "jasmine": true,
-      "moment": true,
       "mocha": true,
       "node": true
     },
     "globals": {
+      "moment": true,
       "Chart": true,
       "$": true
     },

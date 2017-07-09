@@ -44,7 +44,12 @@ setTimeout(() => {
         },
         tooltips: {
           callbacks: {
-            title: tooltipItem => moment(tooltipItem.xLabel).format('MMMM D, h:mm a'),
+            labelColor: () => ({
+              borderColor: 'transparent',
+              backgroundColor: 'transparent'
+            }),
+            title: tooltipItem => moment(tooltipItem.xLabel)
+              .format('MMMM D, h:mm a'),
             label: tooltipItem => commentMap[tooltipItem.xLabel],
           }
         }
