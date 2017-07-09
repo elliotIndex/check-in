@@ -39,7 +39,8 @@ setTimeout(() => {
             }
           }],
           xAxes: [{
-            type: 'time'
+            type: 'time',
+            max: Date.now()
           }]
         },
         tooltips: {
