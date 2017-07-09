@@ -4,12 +4,18 @@ const ctx = document.getElementById('myChart')
 // Place request on event loop so we have access to jQuery
 setTimeout(() => {
   $.get('http://localhost:3000/happinessData', (happinessData) => {
+    const commentMap = {};
     const chartedHappinessData = happinessData
-    .filter(happinessDatum => happinessDatum.value >= 1 && happinessDatum.value <= 10)
-    .map(happinessDatum => ({
-      x: happinessDatum.timestamp,
-      y: happinessDatum.value,
-    }));
+      .map((happinessDatum) => {
+        commentMap[happinessDatum.timestamp] = happinessDatum.comment;
+        return happinessDatum;
+      })
+      .filter(happinessDatum => happinessDatum.value >= 1 && happinessDatum.value <= 10)
+      .map(happinessDatum => ({
+        x: happinessDatum.timestamp,
+        y: happinessDatum.value,
+        tooltip: 'hi'
+      }));
 
     new Chart(ctx, {
       type: 'line',
@@ -35,6 +41,12 @@ setTimeout(() => {
           xAxes: [{
             type: 'time'
           }]
+        },
+        tooltips: {
+          callbacks: {
+            title: tooltipItem => moment(tooltipItem.xLabel).format('MMMM D, h:mm a'),
+            label: tooltipItem => commentMap[tooltipItem.xLabel],
+          }
         }
       }
     });

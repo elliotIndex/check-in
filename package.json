@@ -75,6 +75,7 @@
     "env": {
       "browser": true,
       "jasmine": true,
+      "moment": true,
       "mocha": true,
       "node": true
     },
