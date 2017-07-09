@@ -1,5 +1,6 @@
 const passport = require('passport');
 const User = require('../models/User');
+const reminders = require('./reminders');
 
 /**
  * GET /login
@@ -148,6 +149,7 @@ exports.postUpdateReminders = (req, res, next) => {
       if (err) {
         return next(err);
       }
+      reminders.createReminder(user);
       req.flash('success', { msg: 'Reminders information has been updated.' });
       res.redirect('/account');
     });

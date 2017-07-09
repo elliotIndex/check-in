@@ -4,7 +4,14 @@ const ciTwilio = require('./check-in-twilio');
 
 const remindersScheduleMap = {}; // user_id: schedule
 
+const stopReminder = (user) => {
+  if (remindersScheduleMap[user._id]) {
+    remindersScheduleMap[user._id].stop();
+  }
+};
+
 const createReminder = (user) => {
+  stopReminder(user);
   const [hour, minute] = user.reminders.time.split(':');
 
   remindersScheduleMap[user._id] = cron.schedule(`0 ${minute} ${hour} * * * *`, () => {
@@ -13,14 +20,11 @@ const createReminder = (user) => {
   });
 };
 
-exports.stopReminder = (userId) => {
-  remindersScheduleMap[userId].stop();
-};
-
 exports.scheduleAllReminders = () => {
   User.find({ 'reminders.should': true }, (err, users) => {
     users.forEach(user => createReminder(user));
   });
 };
 
+exports.stopReminder = stopReminder;
 exports.createReminder = createReminder;
