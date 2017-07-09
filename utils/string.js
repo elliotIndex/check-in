@@ -13,3 +13,11 @@ exports.getFirstNumber = (str) => {
     return null;
   }
 };
+
+exports.formatTwilioPhone = (phoneNum) => {
+  let digits = phoneNum.match(/\d/g).join('');
+  if (digits.length < 11) {
+    digits = `1${digits}`;
+  }
+  return `+${digits}`;
+};

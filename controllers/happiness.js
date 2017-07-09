@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const StringUtils = require('../utils/string-utils');
+const StringUtils = require('../utils/string');
 const ciTwilio = require('./check-in-twilio.js');
 
 /**
@@ -60,11 +60,11 @@ exports.postHappinessTest = (req, res) => {
   const value = StringUtils.getFirstNumber(messageInfo.Body);
   const comment = messageInfo.Body;
 
-  User.findOne({ 'profile.phone': fromPhone }, (err, user) => {
-    if (err) {
+  User.findOne({ 'profile.formattedPhone': fromPhone }, (err, user) => {
+    if (err || !user) {
       ciTwilio.sendMessage(fromPhone,
-        'Uh oh! It looks like you haven\'t set up a Check In account. Head over to ' +
-        'check-in.herokuapp.com to set one up now!');
+        'Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
+        'Head over to check-in.herokuapp.com to set one up now!');
     } else if (!(value >= 1 && value <= 10)) {
       ciTwilio.sendMessage(fromPhone,
         'Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +

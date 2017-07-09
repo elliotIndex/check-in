@@ -1,6 +1,7 @@
 const passport = require('passport');
 const User = require('../models/User');
 const reminders = require('./reminders');
+const stringUtils = require('../utils/string');
 
 /**
  * GET /login
@@ -122,9 +123,12 @@ exports.getAccount = (req, res) => {
  * Update profile information.
  */
 exports.postUpdateProfile = (req, res, next) => {
+  req.assert('phone', 'Phone number is not valid. It must have 10 or 11 digits').validPhone();
+
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
     user.profile.phone = req.body.phone || '';
+    user.profile.formattedPhone = stringUtils.formatTwilioPhone(user.profile.phone);
     user.profile.name = req.body.name || '';
     user.save((err) => {
       if (err) {

@@ -83,7 +83,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(expressValidator());
+app.use(expressValidator({
+  customValidators: {
+    validPhone: (value) => {
+      const numDigits = value.match(/\d/g).length;
+      return numDigits === 10 || numDigits === 11;
+    }
+  }
+}));
 app.use(session({
   resave: true,
   saveUninitialized: true,
