@@ -44,6 +44,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const happinessController = require('./controllers/happiness');
 const apiController = require('./controllers/api');
+const reminders = require('./controllers/reminders');
 
 /**
  * API keys and Passport configuration.
@@ -177,6 +178,10 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   res.redirect(req.session.returnTo || '/');
 });
 
+/**
+ * Start reminder chron job
+ */
+reminders.scheduleAllReminders();
 
 /**
  * Error Handler.
