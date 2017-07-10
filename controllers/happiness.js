@@ -61,27 +61,27 @@ exports.postHappinessTest = (req, res) => {
   const comment = messageInfo.Body;
 
   User.findOne({ 'profile.formattedPhone': fromPhone }, (err, user) => {
-    if (err || !user) {
-      ciTwilio.sendMessage(fromPhone,
-        'Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
-        `Head over to ${process.env.DOMAIN} to set one up now!`);
-    } else if (!(value >= 1 && value <= 10)) {
-      ciTwilio.sendMessage(fromPhone,
-        'Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +
-        'another message with a rating from 1 to 10? Thanks!');
-    } else {
-      user.happiness = user.happiness || [];
-      user.happiness.push({ timestamp: Date.now(), value, comment });
-      user.save((err) => {
-        if (err) {
-          ciTwilio.sendMessage(fromPhone,
-            'Oh no! I wasn\'t able to save your most recent happiness update. Can you try again ' +
-            'with a different messgage?');
-        } else {
-          ciTwilio.sendMessage(fromPhone, 'Got it! Thanks for the update.');
-        }
-      });
-    }
+    // if (err || !user) {
+    //   ciTwilio.sendMessage(fromPhone,
+    //     'Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
+    //     `Head over to ${process.env.DOMAIN} to set one up now!`);
+    // } else if (!(value >= 1 && value <= 10)) {
+    //   ciTwilio.sendMessage(fromPhone,
+    //     'Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +
+    //     'another message with a rating from 1 to 10? Thanks!');
+    // } else {
+    //   user.happiness = user.happiness || [];
+    //   user.happiness.push({ timestamp: Date.now(), value, comment });
+    //   user.save((err) => {
+    //     if (err) {
+    //       ciTwilio.sendMessage(fromPhone,
+    //         'Oh no! I wasn\'t able to save your most recent happiness update. Can you try again ' +
+    //         'with a different messgage?');
+    //     } else {
+    //       ciTwilio.sendMessage(fromPhone, 'Got it! Thanks for the update.');
+    //     }
+    //   });
+    // }
     res.set('Content-Type', 'text/xml');
     res.send('<body>Thanks Twilio!</body>');
   });
