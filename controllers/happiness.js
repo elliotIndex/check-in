@@ -82,6 +82,5 @@ exports.postHappinessTest = (req, res) => {
         }
       });
     }
-    res.sendStatus(200);
   });
 };
