@@ -130,6 +130,7 @@ passport.use(new GoogleStrategy({
         User.findById(req.user.id, (err, user) => {
           if (err) { return done(err); }
           user.google = profile.id;
+          user.tokens = user.tokens || [];
           user.tokens.push({ kind: 'google', accessToken });
           user.profile.name = user.profile.name || profile.displayName;
           user.profile.gender = user.profile.gender || profile._json.gender;
@@ -156,6 +157,7 @@ passport.use(new GoogleStrategy({
           const user = new User();
           user.email = profile.emails[0].value;
           user.google = profile.id;
+          user.tokens = user.tokens || [];
           user.tokens.push({ kind: 'google', accessToken });
           user.profile.name = profile.displayName;
           user.profile.gender = profile._json.gender;

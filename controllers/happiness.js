@@ -60,7 +60,6 @@ exports.postHappinessTest = (req, res) => {
   const value = StringUtils.getFirstNumber(messageInfo.Body);
   const comment = messageInfo.Body;
 
-  console.log('recieved message', req.body);
   User.findOne({ 'profile.formattedPhone': fromPhone }, (err, user) => {
     res.set('Content-Type', 'text/xml');
     if (err || !user) {
