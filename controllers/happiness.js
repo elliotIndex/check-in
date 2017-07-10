@@ -60,6 +60,7 @@ exports.postHappinessTest = (req, res) => {
   const value = StringUtils.getFirstNumber(messageInfo.Body);
   const comment = messageInfo.Body;
 
+  console.log('recieved message', req.body);
   User.findOne({ 'profile.formattedPhone': fromPhone }, (err, user) => {
     // if (err || !user) {
     //   ciTwilio.sendMessage(fromPhone,
@@ -82,7 +83,6 @@ exports.postHappinessTest = (req, res) => {
     //     }
     //   });
     // }
-    res.set('Content-Type', 'text/xml');
-    res.send('<body>Thanks Twilio!</body>');
+    res.sendStatus(200);
   });
 };
