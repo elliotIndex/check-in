@@ -64,7 +64,7 @@ exports.postHappinessTest = (req, res) => {
     if (err || !user) {
       ciTwilio.sendMessage(fromPhone,
         'Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
-        'Head over to check-in.herokuapp.com to set one up now!');
+        `Head over to ${process.env.DOMAIN} to set one up now!`);
     } else if (!(value >= 1 && value <= 10)) {
       ciTwilio.sendMessage(fromPhone,
         'Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +
