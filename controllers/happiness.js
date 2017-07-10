@@ -65,20 +65,20 @@ exports.postHappinessTest = (req, res) => {
     res.set('Content-Type', 'text/xml');
     if (err || !user) {
       // ciTwilio.sendMessage(fromPhone,
-      res.send('Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
-        `Head over to ${process.env.DOMAIN} to set one up now!`);
+      res.send('<Response><Message>Uh oh! It looks like you haven\'t added a phone number to your Check In account. ' +
+        `Head over to ${process.env.DOMAIN} to set one up now!</Message></Response>`);
     } else if (!(value >= 1 && value <= 10)) {
-      res.send('Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +
-        'another message with a rating from 1 to 10? Thanks!');
+      res.send('<Response><Message>Sorry, but I couldn\'t figure out a happiness value from your last text. Can you send ' +
+        'another message with a rating from 1 to 10? Thanks!</Message></Response>');
     } else {
       user.happiness = user.happiness || [];
       user.happiness.push({ timestamp: Date.now(), value, comment });
       user.save((err) => {
         if (err) {
-          res.send('Oh no! I wasn\'t able to save your most recent happiness update. Can you try again ' +
-            'with a different messgage?');
+          res.send('<Response><Message>Oh no! I wasn\'t able to save your most recent happiness update. Can you try again ' +
+            'with a different messgage?</Message></Response>');
         } else {
-          res.send('Got it! Thanks for the update.');
+          res.send('<Response><Message>Got it! Thanks for the update.</Message></Response>');
         }
       });
     }
