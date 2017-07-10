@@ -83,6 +83,6 @@ exports.postHappinessTest = (req, res) => {
       });
     }
     res.set('Content-Type', 'text/xml');
-    res.send('Thanks Twilio!');
+    res.send('<body>Thanks Twilio!</body>');
   });
 };
