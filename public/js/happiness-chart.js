@@ -3,7 +3,7 @@ const chartContext = document.getElementById('myChart')
 
 // Place request on event loop so we have access to jQuery
 setTimeout(() => {
-  $.get('http://localhost:3000/happinessData', (happinessData) => {
+  $.get('/happinessData', (happinessData) => {
     const commentMap = {};
     const chartedHappinessData = happinessData
       .map((happinessDatum) => {
